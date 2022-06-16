@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="images/favicon.png" type="image/png" />
+    <title>Toko Buku Semprong</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        .top5 { margin-top:5px; }
+        .top7 { margin-top:7px; }
+        .top10 { margin-top:10px; }
+        .top15 { margin-top:15px; }
+        .top17 { margin-top:17px; }
+        .top30 { margin-top:30px; }
+    </style>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <script type="text/javascript">
+        var arrData = JSON.parse(localStorage.myArrData);
+        function confirmbeli(){
+          if (confirm("Apakah anda yakin untuk membeli?") == true) {
+          alert("Pesanan sudah masuk, anda akan dihubungi dalam waktu 2 jam untuk pembayaran")
+          window.location.replace("beranda.html");
+        }}
+      </script>
+</head>
+<body>
+
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+<h3>Form Pembelian</h3>
+<hr />
+
+<form name="insertrecord">
+  <div class="row">
+    <div class="col-md-4"><b>Judul Buku</b>
+    <h4><script>document.write(arrData[0])</script></h4>
+    </div>
+    <div class="col-md-4"><b>Harga</b>
+    <h4><script>document.write(arrData[1])</script></h4>
+    </div>
+    </div>
+<div class="row">
+<div class="col-md-4"><b>Nama Depan</b>
+<input type="text" name="firstname" class="form-control" required>
+</div>
+<div class="col-md-4"><b>Nama Belakang</b>
+<input type="text" name="lastname" class="form-control" required>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-4"><b>Email</b>
+<input type="email" name="emailid" class="form-control" required>
+</div>
+<div class="col-md-4"><b>No HP</b>
+<input type="text" name="contactno" class="form-control" maxlength="10" required>
+</div>
+</div>  
+<div class="row">
+<div class="col-md-8"><b>Alamat</b>
+<textarea class="form-control" name="address" required></textarea>
+</div>
+</div>  
+
+<div class="row" style="margin-top:1%">
+<div class="col-md-8">
+<button type="button" onclick="confirmbeli()" class="btn btn-primary">Pesan</button>
+<button type="button" onclick="history.back()" class="btn btn-danger">Batal</button>
+</div>
+</div> 
+</form>
+</div>
+</div>
+</body>
+</html>
