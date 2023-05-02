@@ -61,32 +61,66 @@
           <i class="bx bx-current-location"></i>
         </div>
       </div>
-      <div class="row text-center">
-        <div class="row justify-content-center">
-          <div class="col-md-2 col-sm-12 mb-3">
-            <div class="row">
-              <div class="col-12">
-                <img src="images/shubuh.jpg" height="150px" width="150px" />
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <h2 style="font-family: sans-serif"><b>Shubuh</b></h2>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-12">
-            <div class="row text-center">
-              <div class="col-12">
-                <h4 style="font-family: sans-serif; font-size: small">
-                  Jam Saat ini
-                </h4>
-              </div>
-            </div>
+      <div class="row text-center justify-content-center align-items-center">
+        <div class="col-md-2">
+          <div class="row">
             <div class="col-12">
-              <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+              <img src="images/shubuh.jpg" height="150px" width="150px" />
             </div>
           </div>
+          <div class="row">
+            <div class="col-12">
+              <h2 style="font-family: sans-serif"><b>Shubuh</b></h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="d-flex justify-content-center">
+            <table>
+              <tr>
+                <td>
+                  <h4 style="font-family: sans-serif; font-size: 20px">
+                    Jam Saat ini
+                  </h4>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div
+                    id="MyClockDisplay"
+                    class="clock"
+                    onload="showTime()"
+                  ></div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <table class="table table-striped">
+            <tbody>
+              <tr>
+                <td>Shubuh</td>
+                <td>05:00</td>
+              </tr>
+              <tr>
+                <td>Dzuhur</td>
+                <td>12:00</td>
+              </tr>
+              <tr>
+                <td>Ashar</td>
+                <td>15:00</td>
+              </tr>
+              <tr>
+                <td>Maghrib</td>
+                <td>18:00</td>
+              </tr>
+              <tr>
+                <td>Isya</td>
+                <td>19:00</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
