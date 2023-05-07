@@ -4,19 +4,24 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>PWA Jawdal Sholat</title>
+    <!-- menggunakan bootstrap css -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <!-- link ke online css icon -->
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
+    <!-- link ke offline css -->
     <link href="css/offcanvas.css" rel="stylesheet" />
     <link href="css/clock.css" rel="stylesheet" />
   </head>
   <body>
+    <!-- deklarasi navbar -->
     <nav
       class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark"
       aria-label="Main navigation"
     >
+      <!-- pembuatan container untuk kontan dibawah navbar -->
       <div class="container-fluid">
         <a class="navbar-brand" href="#">PWA Jadwal Sholat</a>
         <button
@@ -27,7 +32,7 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-
+        <!-- navbar akan collapse ketika viewport berubah, dengan batuan dari bootstrap -->
         <div
           class="navbar-collapse offcanvas-collapse"
           id="navbarsExampleDefault"
@@ -37,6 +42,7 @@
               <a class="nav-link" href="#">About</a>
             </li>
           </ul>
+          <!-- form search daerah -->
           <form class="d-flex" role="search">
             <input
               class="form-control me-2"
@@ -51,6 +57,7 @@
     </nav>
 
     <div class="container-fluid">
+      <!-- border bar konten untuk memunculkan nama kota -->
       <div
         class="d-flex justify-content-center p-3 my-3 text-white bg-secondary rounded shadow-sm"
       >
@@ -61,6 +68,7 @@
           <i class="bx bx-current-location"></i>
         </div>
       </div>
+      <!-- penambahan gambar images -->
       <div class="row text-center justify-content-center align-items-center">
         <div class="col-md-2">
           <div class="row">
@@ -74,6 +82,7 @@
             </div>
           </div>
         </div>
+        <!-- penambahan jam digital dengan memanggil function showtime yang ada di clock.js -->
         <div class="col-md-4">
           <div class="d-flex justify-content-center">
             <table>
@@ -117,9 +126,11 @@
           </div>
         </div>
         <div class="col-md-6">
+          <!-- menampilkan tabel jadwal sholat dengan tabel dari bootstrap -->
           <table class="table table-striped">
             <tbody>
               <tr>
+                <!-- default date akan otomatis terubah dengan tanggal hari ini, yang akan dimanipulasi di file script.js -->
                 <td id="todaydate" colspan="2">12 April 2023</td>
               </tr>
               <tr>
@@ -147,13 +158,17 @@
         </div>
       </div>
     </div>
+    <!-- script js bawaan dari botstrap -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
       crossorigin="anonymous"
     ></script>
+    <!-- script js offcanvas yang digunakan untuk navbar agar bisa membesar dan mengecil sesuai viewport -->
     <script src="js/offcanvas.js"></script>
+    <!-- script js untuk jam digital -->
     <script src="js/clock.js"></script>
+    <!-- script js tambahan untuk menarik data dari API (untuk saat ini belum digunakan karena masih static) -->
     <script src="js/script.js"></script>
   </body>
 </html>
