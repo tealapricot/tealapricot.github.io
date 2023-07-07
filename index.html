@@ -43,15 +43,22 @@
             </li>
           </ul>
           <!-- form search daerah -->
-          <form class="d-flex" role="search">
+          <div class="d-flex">
             <input
+              id="searchkota"
               class="form-control me-2"
               type="search"
-              placeholder="Ubah Lokasi"
+              placeholder="Ubah Lokasi Kab/Kota"
               aria-label="Cari"
             />
-            <button class="btn btn-outline-light" type="submit">Cari</button>
-          </form>
+            <button
+              class="btn btn-outline-light"
+              type="submit"
+              onclick="getIdKota()"
+            >
+              Cari
+            </button>
+          </div>
         </div>
       </div>
     </nav>
@@ -62,7 +69,7 @@
         class="d-flex justify-content-center p-3 my-3 text-white bg-secondary rounded shadow-sm"
       >
         <div>
-          <h3>Yogyakarta,ID</h3>
+          <h3 id="namakota"></h3>
         </div>
         <div class="align-self-center m-2">
           <i class="bx bx-current-location"></i>
@@ -73,13 +80,16 @@
         <div class="col-md-2">
           <div class="row">
             <div class="col-12">
-              <img src="images/shubuh.jpg" height="150px" width="150px" />
+              <img
+                id="logoshalat"
+                src="images/shubuh.jpg"
+                height="150px"
+                width="150px"
+              />
             </div>
           </div>
           <div class="row">
-            <div class="col-12">
-              <h2 style="font-family: sans-serif"><b>Shubuh</b></h2>
-            </div>
+            <div class="col-12"></div>
           </div>
         </div>
         <!-- penambahan jam digital dengan memanggil function showtime yang ada di clock.js -->
@@ -104,21 +114,23 @@
               </tr>
               <tr>
                 <td>
-                  <h4 style="font-family: sans-serif; font-size: 20px">
-                    Shubuh
-                  </h4>
+                  <h4
+                    id="namashalat"
+                    style="font-family: sans-serif; font-size: 20px"
+                  ></h4>
                 </td>
               </tr>
               <tr>
                 <td>
                   <h4
+                    id="jamshalat"
                     style="
                       font-family: parkavenue;
                       font-size: 60px;
                       letter-spacing: 7px;
                     "
                   >
-                    05:00:00
+                    -
                   </h4>
                 </td>
               </tr>
@@ -131,27 +143,27 @@
             <tbody>
               <tr>
                 <!-- default date akan otomatis terubah dengan tanggal hari ini, yang akan dimanipulasi di file script.js -->
-                <td id="todaydate" colspan="2">12 April 2023</td>
+                <td id="todaydate" colspan="2"></td>
               </tr>
               <tr>
-                <td>Shubuh</td>
-                <td>04:00</td>
+                <td>Subuh</td>
+                <td id="jamsubuh"></td>
               </tr>
               <tr>
                 <td>Dzuhur</td>
-                <td>12:00</td>
+                <td id="jamdzuhur"></td>
               </tr>
               <tr>
                 <td>Ashar</td>
-                <td>15:00</td>
+                <td id="jamashar"></td>
               </tr>
               <tr>
                 <td>Maghrib</td>
-                <td>18:00</td>
+                <td id="jammaghrib"></td>
               </tr>
               <tr>
                 <td>Isya</td>
-                <td>19:00</td>
+                <td id="jamisya"></td>
               </tr>
             </tbody>
           </table>
@@ -170,5 +182,6 @@
     <script src="js/clock.js"></script>
     <!-- script js tambahan untuk menarik data dari API (untuk saat ini belum digunakan karena masih static) -->
     <script src="js/script.js"></script>
+    <script src="js/serviceworker.js"></script>
   </body>
 </html>
