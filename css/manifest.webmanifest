@@ -1,0 +1,28 @@
+{
+    
+    "name": "PWAjadwalsholat",
+    "short_name": "PWAJS",
+    
+
+    "description": "Github Page as a Progressive Web App",
+  
+   
+    "scope": "/",
+    "start_url": "/",
+  
+   
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+  
+    
+    "display": "standalone", 
+    
+   
+    "icons": [
+        {
+          "src": "/images/mosque.png",
+          "type": "image/png",
+          "sizes": "360x360"
+        }
+    ]
+  }
