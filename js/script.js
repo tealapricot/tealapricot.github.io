@@ -6,16 +6,29 @@ const time = date.getTime();
 
 // This variable will save the event for later use.
 let deferredPrompt;
-window.addEventListener("beforeinstallprompt", (e) => {
-  // Prevents the default mini-infobar or install dialog from appearing on mobile
+
+window.addEventListener("beforeinstallprompt", function (event) {
+  // Prevent Chrome 67 and earlier from automatically showing the prompt
   e.preventDefault();
-  // Save the event because you'll need to trigger it later.
+  // Stash the event so it can be triggered later.
   deferredPrompt = e;
-  // Show your customized install prompt for your PWA
-  // Your own UI doesn't have to be a single element, you
-  // can have buttons in different locations, or wait to prompt
-  // as part of a critical journey.
-  showInAppInstallPromotion();
+});
+
+// Installation must be done by a user gesture! Here, the button click
+btnAdd.addEventListener("click", (e) => {
+  // hide our user interface that shows our A2HS button
+  btnAdd.style.display = "none";
+  // Show the prompt
+  deferredPrompt.prompt();
+  // Wait for the user to respond to the prompt
+  deferredPrompt.userChoice.then((choiceResult) => {
+    if (choiceResult.outcome === "accepted") {
+      console.log("User accepted the A2HS prompt");
+    } else {
+      console.log("User dismissed the A2HS prompt");
+    }
+    deferredPrompt = null;
+  });
 });
 
 window.addEventListener("load", function () {
