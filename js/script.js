@@ -1,9 +1,12 @@
+//deklarasi penanggalan
 const date = new Date();
 const year = date.getFullYear();
 const month = String(date.getMonth() + 1).padStart(2, "0");
 const tanggal = String(date.getDate()).padStart(2, "0");
 const time = date.getTime();
 
+//ketika load pertama akan menarik data di localstorage dari json yang telah tersimpan
+//jika data tidak tersimpan maka akan otomatis menarik data dengan menjalankan funsi getcoord
 window.addEventListener("load", function () {
   let data = localStorage.getItem("datajadwal");
   data = JSON.parse(data);
@@ -13,6 +16,7 @@ window.addEventListener("load", function () {
 });
 window.addEventListener("load", getCoord());
 
+//mengambil geolokasi koordinat, jika telah ditemukan maka akan menjalankan fungsi coordfound
 function getCoord() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(coordFound);
@@ -21,12 +25,13 @@ function getCoord() {
     cariKota(-6.175392, 106.827153);
   }
 }
+
+//menjalankan fungsi carikota dengan memasukkan koordinat latitud dan longitude
 function coordFound(pos) {
   cariKota(pos.coords.latitude, pos.coords.longitude);
 }
 
-function cariKotaFromSearch(keyword) {}
-
+//carikota otomatis akan secara reverse geocode mencari kota ke API sesuai koordinat
 function cariKota(lat, lon) {
   fetch(
     "https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=" +
@@ -37,17 +42,21 @@ function cariKota(lat, lon) {
   )
     .then((Response) => Response.json())
     .then((data) => {
+      //mengambil nama kota dari object yang sudah ditarik dan menjalankan fungsi getidkota untuk mencari idkota
       getIdKota(data.localityInfo.administrative[2].name);
     });
 }
 
+//mencari id kota sesuai dengan kota yang telah ditemukan
 function getIdKota(kota) {
   let isSearch = false;
   if (!kota) {
     kota = document.getElementById("searchkota").value;
     isSearch = true;
   }
+  //menyimpan nama kota ke local storage
   localStorage.setItem("kota", kota);
+  //menarik idkota sesuai kota yang ditemukan
   fetch("https://api.myquran.com/v1/sholat/kota/cari/" + kota)
     .then((Response) => Response.json())
     .then((data) => {
@@ -55,6 +64,7 @@ function getIdKota(kota) {
         if (isSearch) {
           alert("Kota ditemukan");
         }
+        //mengambil jamsholat
         getJamSholat(data.data[0].id);
       } else {
         alert(
@@ -63,7 +73,7 @@ function getIdKota(kota) {
       }
     });
 }
-
+//mengambil jamsholat dalam sebulan
 function getJamSholat(idkota) {
   fetch(
     "https://api.myquran.com/v1/sholat/jadwal/" +
@@ -75,11 +85,14 @@ function getJamSholat(idkota) {
   )
     .then((Response) => Response.json())
     .then((data) => {
+      //menyimpan hasil fetch kedalam local storage dalam bentuk json
       localStorage.setItem("datajadwal", JSON.stringify(data));
+      //running ubahTampilanJamSholat
       ubahTampilanJamSholat(data);
     });
 }
 
+//fungsi untuk mengubah tampilan dalam index.html
 function ubahTampilanJamSholat(data) {
   document.getElementById("namakota").innerHTML = data.data.lokasi;
   let datajadwal = data.data.jadwal;
@@ -93,6 +106,7 @@ function ubahTampilanJamSholat(data) {
   document.getElementById("todaydate").innerHTML =
     datajadwal[tanggal - 1].tanggal;
 
+  //convert jam shalat dari string ke date
   let jamsubuh = new Date(
     year +
       "-" +
@@ -144,6 +158,7 @@ function ubahTampilanJamSholat(data) {
       ":00.000+07:00"
   );
 
+  //mengubah gambar dan jam sesuai jam sholat
   if (date < jamsubuh) {
     document.getElementById("logoshalat").src = "images/shubuh.jpg";
     document.getElementById("namashalat").innerHTML = "Subuh";
@@ -171,17 +186,3 @@ function ubahTampilanJamSholat(data) {
       datajadwal[tanggal - 1].isya + ":00";
   }
 }
-
-// //funtion untuk menampilkan tanggal hari ini
-// function showDate() {
-//   let today = new Date().toLocaleDateString();
-//   document.getElementById("todaydate").innerHTML = today;
-// }
-
-// // function shalattime() {
-// //   let date = new Date();
-// //   let h = date.getHours(); // 0 - 23
-// //   let m = date.getMinutes(); // 0 - 59
-// //   let s = date.getSeconds(); // 0 - 59
-// // }
-// showDate();
